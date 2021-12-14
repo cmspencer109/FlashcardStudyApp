@@ -29,4 +29,4 @@ How to run migrations (only need to do this if you make changes to models.py)
 
 ## Miscellaneous
 
-...
+Currently setup with Heroku to auto deploy the `main` branch to https://mst-flash-study.herokuapp.com/
