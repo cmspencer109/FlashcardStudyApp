@@ -51,3 +51,4 @@ urllib3==1.26.6
 urwid==2.1.2
 virtualenv==20.7.2
 webencodings==0.5.1
+whitenoise==5.3.0
