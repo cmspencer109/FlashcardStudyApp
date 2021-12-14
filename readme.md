@@ -14,9 +14,9 @@
 
 ## Helpful links
 
-https://www.djangoproject.com/start/
-https://docs.djangoproject.com/en/3.2/intro/tutorial01/
-https://learndjango.com/tutorials/template-structure
+* https://www.djangoproject.com/start/
+* https://docs.djangoproject.com/en/3.2/intro/tutorial01/
+* https://learndjango.com/tutorials/template-structure
 
 
 ## Running the app
