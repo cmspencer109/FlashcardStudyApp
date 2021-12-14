@@ -1,0 +1,27 @@
+{% extends "flashcard_app/base.html" %}
+{% block content %}
+
+<div class="row justify-content-center userform">
+  <div class="col-6">
+    <form method="POST">
+      <div class="mb-3 d-flex align-items-start justify-content-between">
+        <h2>Create an account</h2>
+      
+        <!-- <button type="submit" class="btn btn-primary">Register</button> -->
+      </div>
+    
+      {% csrf_token %}
+      <fieldset class="form-group">
+        {{ form.as_p }}
+      </fieldset>
+    
+      <div class="mb-5 float-end">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+    
+    <small class="text-muted">Already have an account? <a href="{% url 'login' %}">Log in</a></small>
+  </div>
+</div>
+
+{% endblock content %}

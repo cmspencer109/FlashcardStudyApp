@@ -1,0 +1,16 @@
+{% extends "flashcard_app/base.html" %}
+{% block content %}
+
+<div class="mb-3 d-flex align-items-start justify-content-between">
+  <h2>Profile</h2>
+
+  <!-- <button type="submit" class="btn btn-primary">Log in</button> -->
+</div>
+
+<!-- <h3 style="color:#333;">{{ user.username }}</h3> -->
+<p>{{ user.username }}</p>
+<p>{{ user.email }}</p>
+<p>{{ user.student.major }}</p>
+<p>{{ user.student.school_name }}</p>
+
+{% endblock content %}

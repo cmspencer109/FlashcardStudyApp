@@ -1,0 +1,57 @@
+{% extends "flashcard_app/base.html" %}
+{% load static %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="mb-3 d-flex align-items-start justify-content-between">
+  <h2>Your flashcard decks</h2>
+
+  <div>
+    <a href="/courses/" class="btn btn-outline-dark">Manage Courses</a>
+    <a href="/create-deck/" class="btn btn-primary">New Deck</a>
+  </div>
+</div>
+
+<div class="row">
+  {% for flashcard_deck in flashcard_decks %}
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4 class="card-title">{{ flashcard_deck.name }}</h4>
+          <p class="card-text">{{ flashcard_deck.course.name }}</p>
+          <p class="card-text">{{ flashcard_deck.description }}</p>
+          <a href="/study/{{ flashcard_deck.id }}" class="btn btn-primary">Study</a>
+          <a href="/edit-deck/{{ flashcard_deck.id}}" class="btn btn-outline-dark">Edit</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>You have no flashcards. <a href="/create-deck/">Create</a> a deck now and start studying!</p>
+  {% endfor %}
+</div>
+{% else %}
+
+<div class="row justify-content-center">
+  <div class="col-8 my-5">
+    <div class="card p-5">
+      <div class="card-body">
+          <h1 class="text-center mb-3">Welcome to FlashStudy!</h1>
+          <p style="font-size: 18px;">
+            FlashStudy is the ultimate place to create flashcard decks to help you study for your classes!
+          </p>
+          <p style="font-size: 18px;">
+            If you're new here, you can <a href="/register/">register</a> for an account. If you've already created an account, you can <a href="/login/">log in</a>.
+          </p>
+          <p style="font-size: 18px;">
+            Once you're logged in, you can get started creating Courses and Flashcard Decks!
+          </p>
+          <a class="nav-item nav-link btn btn-primary text-white mb-3" href="{% url 'login' %}">Login</a>
+          <a class="nav-item nav-link btn btn-warning text-black d-block" href="{% url 'register' %}">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}

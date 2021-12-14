@@ -1,0 +1,72 @@
+{% extends "flashcard_app/base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div class="mb-3 d-flex align-items-start justify-content-between">
+      <h2>{{ flashcard_deck.course.name }} - {{ flashcard_deck.name }}</h2>
+    </div>
+
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        
+        {% for flashcard in flashcard_deck.flashcard_set.all %}
+          <div class="swiper-slide">
+            <div class="flip-card" style="min-height: 300px;">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <div class="card p-3 d-flex justify-content-center">
+                    <p>{{ flashcard.front }}</p>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <div class="card p-3 d-flex justify-content-center">
+                    <p>{{ flashcard.back }}</p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+        {% endfor %}
+        <div class="swiper-slide">
+          <div class="flip-card" style="min-height: 300px;">
+            <div class="card p-3 d-flex justify-content-center text-center">
+              <p>Nice work!</p>
+              <div class="d-flex flex-column align-items-center">
+                <button onclick="swiper.slideTo(0)" class="btn btn-primary d-block mb-2">Review Again <i class="fas fa-undo"></i></button>
+                <a href="/" class="btn btn-primary">Home <i class="fas fa-home"></i></a>
+              </div>
+            </div>
+          </div> 
+        </div>
+
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+const swiper = new Swiper('.swiper', {
+  allowTouchMove: false,
+  pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+
+$(document).ready(function () {
+  $('.flip-card').click(function() {
+    $(this).toggleClass('flipped')
+  })
+});
+</script>
+
+{% endblock content %}

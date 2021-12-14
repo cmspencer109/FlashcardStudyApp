@@ -1,0 +1,12 @@
+{% extends "flashcard_app/base.html" %}
+{% block content %}
+
+<form method="POST">
+  <div class="mb-3 d-flex align-items-start justify-content-between">
+    <h2>You have been Logged out</h2>
+  </div>
+
+  <small class="text-muted">You can log back in <a href="{% url 'login' %}">here</a>.</small>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+/* Theme colors */
+.bg-blue {
+  background-color: #0A5688;
+}
+.bg-yellow-dark {
+  background-color: #F9CB42;
+}
+.bg-yellow {
+  background-color: #F9D162;
+}
+.bg-orange {
+  background-color: #F3954F;
+}
+.bg-green {
+  background-color: #21C392;
+}
+.bg-green-light {
+  background-color: #6EC5A5;
+}
+
+.text-white {
+  color: white;
+}

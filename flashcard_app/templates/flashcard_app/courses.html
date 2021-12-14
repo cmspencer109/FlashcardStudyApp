@@ -1,0 +1,67 @@
+{% extends "flashcard_app/base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-lg-6">
+    <h2 class="mb-3">Your courses</h2>
+    {% for course in courses %}
+      <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
+          <div>
+            <h4 class="card-title">{{ course.name }} - {{ course.section_num }}</h4>
+            <p>{{ course.semester }} {{  course.year }}</p>
+          </div>
+          <div>
+            <!-- <button class="btn btn-primary">Edit</button> -->
+            <a href="{% url 'delete-course' course.id %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>You have no courses. Use the form on the right to create a course.</p>
+    {% endfor %}
+  </div>
+  <div class="col-lg-6">
+    <form action="." method="POST">
+      {% csrf_token %}
+
+      <h2 class="mb-3" style="color:#333;">Add new course</h2>
+
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-8">
+            <label for="course_name" class="form-label">Name</label>
+            <input class="form-control" type="text" id="course_name" name="course_name" placeholder="e.g. CS 2300" required>
+          </div>
+          <div class="col-4">
+            <label for="course_section_num" class="form-label">Section</label>
+            <input class="form-control" type="number" step="1" id="course_section_num" name="course_section_num" placeholder="e.g. 101" required>
+          </div>
+        </div>  
+      </div>
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-6">
+            <label for="course_semester" class="form-label">Semester</label>
+            {% now "n" as month %}
+            <select class="form-select" id="course_semester" name="course_semester" required>
+              <option value="Spring" {% if month == '1' or month == '2' or month == '3' or month == '4' or month == '5' %} selected {% endif %}>Spring</option>
+              <option value="Summer" {% if month == '6' or month == '7' %} selected {% endif %}>Summer</option>
+              <option value="Fall" {% if month == '8' or month == '9' or month == '10' or month == '11' or month == '12' %} selected {% endif %}>Fall</option>
+              <option value="Winter">Winter</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="course_year" class="form-label">Year</label>
+            <input class="form-control" type="number" step="1" id="course_year" name="course_year" placeholder="e.g. 2021" value="{% now 'Y' %}" required>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add</button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

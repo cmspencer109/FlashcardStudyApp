@@ -1,0 +1,63 @@
+{% extends "flashcard_app/base.html" %}
+{% block content %}
+
+<div class="mb-3 d-flex align-items-start justify-content-between">
+  <h2>Editing - {{ deck.name }}</h2>
+
+  <div>
+    <a href="{% url 'delete-deck' deck_id=deck.id %}" class="btn btn-danger">Delete Deck <i class="fas fa-trash"></i></a>
+    <a href="/" class="btn btn-primary">Home <i class="fas fa-home"></i></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    {% for card in deck.flashcard_set.all %}
+
+      <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
+          <div>
+            <strong>Front</strong>
+            <p>{{ card.front }}</p>
+            <strong>Back</strong>
+            <p>{{ card.back }}</p>
+          </div>
+          <div>
+            <!-- <button class="btn btn-primary">Edit</button> -->
+            <a href="{% url 'delete-flashcard' flashcard_id=card.id %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+
+    {% empty %}
+      <p>You have no flashcards. Use the form on the right to add a flashcard.</p>
+    {% endfor %}
+  </div>
+  <div class="col-6">
+    <form action="." method="POST">
+      {% csrf_token %}
+
+      <h2 class="mb-3" style="color:#333;">Add flashcard</h2>
+
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <label for="front" class="form-label">Front</label>
+            <!-- <input class="form-control" type="text" id="front" name="front" placeholder="Term"> -->
+            <textarea class="form-control" id="front" name="front" rows="3" placeholder="Term"></textarea>
+          </div>
+          <div class="col-12">
+            <label for="back" class="form-label">Back</label>
+            <!-- <input class="form-control" type="text" id="back" name="back" placeholder="Definition"> -->
+            <textarea class="form-control" id="back" name="back" rows="3" placeholder="Definition"></textarea>
+          </div>
+        </div>  
+      </div>
+
+      <button type="submit" class="btn btn-primary float-end">Add</button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
