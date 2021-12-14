@@ -27,6 +27,6 @@ How to run the app (should appear on http://127.0.0.1:8000/)
 How to run migrations (only need to do this if you make changes to models.py)
 `python3 manage.py makemigrations && python3 manage.py migrate `
 
-## Miscellaneous
+## Deployments
 
 Currently setup with Heroku to auto deploy the `main` branch to https://mst-flash-study.herokuapp.com/
